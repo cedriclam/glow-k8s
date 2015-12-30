@@ -1,0 +1,8 @@
+bin
+/pkg
+vendor/bin
+vendor/pkg
+hack/gb/bin
+hack/gb/pkg
+.DS_Store
+docker/glow-job/glowk8s
