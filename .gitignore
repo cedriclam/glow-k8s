@@ -1,7 +1,6 @@
 bin
 /pkg
-vendor/bin
-vendor/pkg
+vendor
 hack/gb/bin
 hack/gb/pkg
 .DS_Store

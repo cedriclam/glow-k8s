@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: glow-node
+spec:
+  replicas: 1
+  selector:
+    glow-node: "true"
+  template:
+    metadata:
+      labels:
+        name: glow-node
+        glow-node: "true"
+        role: node
+    spec:
+      containers:
+        - name: glow-node
+          args: ["agent", "--dir=/data", "--master", "$(MASTER)"]
+          image: clamoriniere/glow-node:179d356
+          ports:
+            - containerPort: 8931
+          env:
+            - name: MASTER
+              value: "glow-master:8930"
+          resources:
+            limits:
+              cpu: "0.1"
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          emptyDir: {}

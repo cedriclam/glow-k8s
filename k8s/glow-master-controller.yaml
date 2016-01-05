@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: glow-master
+spec:
+  replicas: 1
+  selector:
+    glow-master: "true"
+  template:
+    metadata:
+      labels:
+        name: glow-master
+        glow-master: "true"
+        role: master
+    spec:
+      containers:
+        - name: glow-node
+          args: ["master", "--ip", "0.0.0.0"]
+          image: clamoriniere/glow-node:222835e
+          ports:
+            - containerPort: 8930
+          resources:
+            limits:
+              cpu: "0.1"

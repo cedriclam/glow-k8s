@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Job
+metadata:
+  name: counter
+spec:
+  selector:
+    matchLabels:
+      app: counter
+  template:
+    metadata:
+      name: counter
+      labels:
+        app: counter
+    spec:
+      containers:
+      - name: counter
+        image: clamoriniere/glow-job:3968e23
+        env:
+          - name: MASTER
+            value: "glow-master:8930"
+        args: ["-glow", "-glow.leader", "$(MASTER)"]
+      restartPolicy: Never

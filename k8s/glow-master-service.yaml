@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: glow-master
+    role: service
+  name: glow-master
+spec:
+  clusterIP: "None"
+  ports:
+    - port: 8930
+  selector:
+    glow-master: "true"
