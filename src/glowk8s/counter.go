@@ -12,7 +12,7 @@ func main() {
 	flag.Parse()
 
 	flow.New().TextFile(
-		"/passwd", 3,
+		"/etc/passwd", 3,
 	).Filter(func(line string) bool {
 		return !strings.HasPrefix(line, "#")
 	}).Map(func(line string, ch chan string) {
